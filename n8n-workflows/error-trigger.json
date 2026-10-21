@@ -1,0 +1,33 @@
+{
+  "name": "USTS Gestion des erreurs",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://backend:8000/webhooks/n8n/error",
+        "sendHeaders": true,
+        "headerParameters": {"parameters": [{"name": "X-Webhook-Secret", "value": "={{$env.WEBHOOK_SECRET}}"}]},
+        "sendBody": true,
+        "bodyParameters": {"parameters": [{"name": "source", "value": "={{$json.workflow.name}}"}, {"name": "error", "value": "={{$json.execution.error.message}}"}]},
+        "options": {}
+      },
+      "name": "Signaler au backend",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    }
+  ],
+  "connections": {
+    "Error Trigger": {"main": [[{"node": "Signaler au backend", "type": "main", "index": 0}]]}
+  },
+  "active": false,
+  "settings": {},
+  "pinData": {}
+}

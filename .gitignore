@@ -1,0 +1,15 @@
+﻿.venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+dist/
+.env
+**/.env
+credentials.json
+token.json
+**/credentials.json
+**/token.json
+*.db
+*.sqlite
+*.sqlite3

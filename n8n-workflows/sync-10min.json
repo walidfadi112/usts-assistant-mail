@@ -1,0 +1,31 @@
+{
+  "name": "USTS Sync Gmail - toutes les 10 min",
+  "nodes": [
+    {
+      "parameters": {"rule": {"interval": [{"field": "minutes", "minutesInterval": 10}]}},
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://backend:8000/webhooks/n8n",
+        "sendHeaders": true,
+        "headerParameters": {"parameters": [{"name": "X-Webhook-Secret", "value": "={{$env.WEBHOOK_SECRET}}"}]},
+        "options": {}
+      },
+      "name": "Appel backend securise",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {"main": [[{"node": "Appel backend securise", "type": "main", "index": 0}]]}
+  },
+  "active": false,
+  "settings": {},
+  "pinData": {}
+}

@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: usts-mail-assistant
+Version: 0.1.0
+Summary: Backend IA pour un assistant de messagerie
+Requires-Python: >=3.12
+Requires-Dist: fastapi>=0.115
+Requires-Dist: uvicorn[standard]>=0.30
+Requires-Dist: sqlalchemy>=2.0
+Requires-Dist: pydantic-settings>=2.5
+Requires-Dist: email-validator>=2.2
+Requires-Dist: httpx>=0.27
+Requires-Dist: pwdlib[argon2]>=0.2
+Requires-Dist: PyJWT>=2.9
+Requires-Dist: python-multipart>=0.0.12
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3; extra == "dev"
+Requires-Dist: pytest-cov>=5.0; extra == "dev"
+Requires-Dist: httpx>=0.27; extra == "dev"
